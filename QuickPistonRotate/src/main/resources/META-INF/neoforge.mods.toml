@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="quickpiston"
+version="1.0.0"
+displayName="Quick Piston Rotate"
+description="Permet de pivoter instantanément les pistons avec une touche."
