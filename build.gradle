@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+version = '1.0.0'
+group = 'com.example.quickpiston'
+
+neoForge {
+    version = '21.1.60'
+
+    // Desactive Parchment pour utiliser les mappings officiels par defaut
+    // parchment {
+    //     mappingsVersion = '2024.07.28'
+    //     minecraftVersion = '1.21.1'
+    // }
+
+    runs {
+        client {
+            client()
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    exclusiveContent {
+        forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+        filter { includeModule('maven.modrinth', 'create') }
+    }
+    maven { url = 'https://maven.createmod.net' } // catnip / ponder / flywheel / registrate
+}
+
+dependencies {
+    // Create est requis a l'execution (client + serveur), mais ce mod n'a aucun code serveur :
+    // il envoie le paquet natif de Create RadialWrenchMenuSubmitPacket, donc il reste 100% cote client.
+    compileOnly 'maven.modrinth:create:6.0.10+mc1.21.1'
+    compileOnly 'net.createmod.ponder:ponder-neoforge:1.0.82+mc1.21.1' // fournit net.createmod.catnip.*
+}
